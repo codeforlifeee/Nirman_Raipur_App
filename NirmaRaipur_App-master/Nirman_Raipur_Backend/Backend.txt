@@ -1,0 +1,200 @@
+Nirman Jashpur Backend Documentation
+===================================
+
+Project Structure
+----------------
+/Nirman_Jashpur_Backend
+├── config/             # Configuration files
+│   └── config.js      # Main configuration settings
+├── controllers/        # Business logic for all routes
+│   ├── administrativeApprovalController.js
+│   ├── reportsController.js
+│   ├── tenderController.js
+│   ├── workOrderController.js
+│   ├── workProgressController.js
+│   └── workTypeController.js
+├── documentation/      # API documentation
+│   └── api_documentation.md
+├── middleware/         # Custom middleware functions
+│   ├── auth.js        # Authentication middleware
+│   └── errorHandler.js # Error handling middleware
+├── models/            # Database models/schemas
+│   ├── AdministrativeApproval.js
+│   ├── Tender.js
+│   ├── WorkOrder.js
+│   ├── WorkProgress.js
+│   └── WorkType.js
+├── routes/            # API routes
+│   ├── administrativeApprovals.js
+│   ├── reports.js
+│   ├── tenders.js
+│   ├── workOrders.js
+│   ├── workProgress.js
+│   └── workTypes.js
+├── tests/            # Test files
+│   ├── api.test.js
+│   └── setup.js
+├── utils/            # Utility functions
+│   ├── database.js
+│   └── helpers.js
+├── .env.example      # Example environment variables
+├── package.json      # Project dependencies
+├── server.js         # Main application entry point
+└── jest.config.json  # Jest testing configuration
+
+API Endpoints
+------------
+1. Work Types (/api/work-types)
+   - GET /             # Get all work types
+   - GET /:id         # Get single work type
+   - POST /           # Create new work type
+   - PUT /:id         # Update work type
+   - DELETE /:id      # Delete work type
+
+2. Administrative Approvals (/api/administrative-approvals)
+   - GET /             # Get all approvals
+   - GET /:id         # Get single approval
+   - POST /           # Create new approval
+   - PUT /:id         # Update approval
+   - DELETE /:id      # Delete approval
+
+3. Tenders (/api/tenders)
+   - GET /             # Get all tenders
+   - GET /:id         # Get single tender
+   - POST /           # Create new tender
+   - PUT /:id         # Update tender
+   - DELETE /:id      # Delete tender
+
+4. Work Orders (/api/work-orders)
+   - GET /             # Get all work orders
+   - GET /:id         # Get single work order
+   - POST /           # Create new work order
+   - PUT /:id         # Update work order
+   - DELETE /:id      # Delete work order
+
+5. Work Progress (/api/work-progress)
+   - GET /             # Get all progress records
+   - GET /:id         # Get single progress record
+   - POST /           # Create new progress record
+   - PUT /:id         # Update progress record
+   - DELETE /:id      # Delete progress record
+
+6. Reports (/api/reports)
+   - GET /agency-wise      # Get agency-wise report
+   - GET /block-wise      # Get block-wise report
+   - GET /scheme-wise     # Get scheme-wise report
+   - GET /pending         # Get pending works report
+   - GET /final-status    # Get final status report
+   - GET /engineer-wise   # Get engineer-wise report
+   - GET /photo-missing   # Get works without photos
+
+Setup Instructions
+-----------------
+1. Install dependencies:
+   ```
+   npm install
+   ```
+
+2. Set up environment variables:
+   - Copy .env.example to .env
+   - Update the variables with your configuration
+
+3. Start the server:
+   - Development mode: `npm run dev`
+   - Production mode: `npm start`
+
+4. Run tests:
+   ```
+   npm test
+   ```
+
+Database Models
+--------------
+1. WorkType
+   - workType: String (required)
+   - department: String (required)
+   - constituency: String
+   - engineer: String
+   - scheme: String
+   - description: String
+   - area: String
+   - city: String
+   - ward: String
+   - estimatedCost: { amount: Number, currency: String }
+   - priority: Enum ['Low', 'Medium', 'High', 'Critical']
+
+2. AdministrativeApproval
+   - workName: String (required)
+   - area: String (required)
+   - workAgency: String (required)
+   - scheme: String (required)
+   - approvalDate: Date
+   - approvalStatus: String
+
+3. Tender
+   - workName: String (required)
+   - area: String (required)
+   - workAgency: String (required)
+   - tenderAmount: Number
+   - tenderDate: Date
+   - tenderStatus: String
+
+4. WorkOrder
+   - workName: String (required)
+   - area: String (required)
+   - workAgency: String (required)
+   - orderStatus: String
+   - orderDate: Date
+   - completionDate: Date
+
+5. WorkProgress
+   - workName: String (required)
+   - area: String (required)
+   - workAgency: String (required)
+   - workProgressStage: String
+   - workDetails: String
+
+Technologies Used
+---------------
+- Node.js
+- Express.js
+- MongoDB with Mongoose
+- Jest for testing
+- Express Validator for input validation
+
+Security Features
+---------------
+- Input validation using express-validator
+- Error handling middleware
+- Authentication middleware
+- Request sanitization
+- Proper error responses
+- Environment variable configuration
+
+Development Guidelines
+--------------------
+1. Follow MVC pattern
+2. Write tests for new features
+3. Validate all inputs
+4. Handle errors appropriately
+5. Keep controllers thin, move business logic to services
+6. Use async/await for asynchronous operations
+7. Follow REST API best practices
+8. Document new endpoints
+
+Error Handling
+-------------
+- Centralized error handling through middleware
+- Proper error codes and messages
+- Validation error responses
+- Database error handling
+- 404 handling for not found resources
+- 500 handling for server errors
+
+Monitoring and Logging
+--------------------
+- Error logging
+- Request logging
+- Performance monitoring
+- Database query logging
+- API usage statistics
