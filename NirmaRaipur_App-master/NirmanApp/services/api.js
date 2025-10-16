@@ -2,8 +2,8 @@ import axios from 'axios';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
 // Base URL comes from Expo public env var for flexibility across web/native
-// EXPO_PUBLIC_API_URL should be like: http://192.168.1.8:3000/api
-const BASE_URL = (process.env.EXPO_PUBLIC_API_URL || '').trim() || 'http://192.168.1.8:3000/api';
+// EXPO_PUBLIC_API_URL should be like: https://nirman-raipur-app.vercel.app/api
+const BASE_URL = (process.env.EXPO_PUBLIC_API_URL || '').trim() || 'https://nirman-raipur-app.vercel.app/api';
 
 console.log('=== API Configuration ===');
 console.log('BASE_URL:', BASE_URL);
